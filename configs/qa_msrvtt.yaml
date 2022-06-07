@@ -1,0 +1,85 @@
+dataset_name: msrvtt
+data_root: ${oc.env:SL_DATA_DIR}/videos_images
+anno_root_downstream: ${oc.env:SL_DATA_DIR}/anno_downstream
+train_file:  # each file should be formatted similar to data/downstream/vqa_train_sample.json
+  - ['${anno_root_downstream}/msrvtt_qa_train.json', '${data_root}/msrvtt_2fps_224', video]
+test_types: [val, ] # one of [minival, test]
+test_file:
+  val: ['${anno_root_downstream}/msrvtt_qa_val.json', '${data_root}/msrvtt_2fps_224', video]
+  test: ['${anno_root_downstream}/msrvtt_qa_test.json', '${data_root}/msrvtt_2fps_224', video]
+stop_key: val  #  on of the key in `test_file`
+answer_list: ${anno_root_downstream}/msrvtt_qa_answer_list.json # list of answer words
+
+text_encoder: bert-base-uncased
+text_decoder: bert-base-uncased
+bert_config: configs/config_bert.json
+vit_type: beit  # items in ${vit_zoo}
+vit_zoo:  # from huggingface
+  beit: microsoft/beit-base-patch16-224-pt22k-ft22k
+vit_name_or_pretrained_path: ${vit_zoo[${vit_type}]}
+temporal_vision_encoder:
+  enable: False
+  num_layers: 2
+  update_pooler_embed: False
+add_temporal_embed: False  # whether to add temporal embed to encoded frames
+
+image_res: 224
+embed_dim: 256  # -- not used
+video_input:  # input -- not used
+  num_frames: 1
+  reader: decord  # one of [decord, av]
+  sample_type: rand
+  num_frames_test: 4  # num_frames during inference/test
+  sample_type_test: middle
+max_q_len: 25
+max_a_len: 5
+
+batch_size:
+  image: 128
+  video: 32
+batch_size_test:
+  image: 64
+  video: 64
+k_test: 128
+temp: 0.07  # -- not used
+eos: '[SEP]'
+
+optimizer:
+  opt: adamW
+  lr: 1e-5
+  opt_betas: [0.9, 0.999]  # default
+  weight_decay: 0.02
+  max_grad_norm: -1  # requires a positive float, use -1 to disable
+  different_lr:  # use a different lr for some modules, e.g., larger lr for new modules
+    enable: False
+    module_names: []
+    lr: 1e-3
+
+scheduler:
+  sched: cosine
+  epochs: 10
+  min_lr_multi: 0.1  # min_lr will be `optimizer.lr * min_lr_multi`
+  warmup_epochs: 0.5  # float
+
+output_dir: None # output dir
+pretrained_path: None  # path to pretrained model weights
+resume: False  # if True, load optimizer and scheduler states as well
+evaluate: False
+# `eval_frame_ensemble': how do we aggregate scores if `video_input.num_frames_test' > `video_input.num_frames'
+# `concat': concat frames before input to multi-modal encoder, i.e., early fusion
+# `mean', `max', `lse': mean/max/lse-pool scores after multi-modal encoder, i.e., late fusion, as in ClipBERT
+eval_frame_ensemble: concat  # [concat, max, mean, lse]
+device: cuda
+seed: 42
+log_freq: 100
+dist_url: env://
+distributed: True
+fp16: True
+debug: False
+num_workers: 16
+
+wandb:
+  enable: False
+  entity: None   # username or teamname to store the runs, see https://docs.wandb.ai/ref/python/init
+  project: vqa  # setup in your command line
+

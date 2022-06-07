@@ -1,0 +1,38 @@
+# local #
+tmp*/
+cache/*
+*/cache*/
+tmp*.py
+tmp*
+*pickle
+data/
+
+# Zip Files/Packages #
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+*.log
+*.sql
+*.sqlite
+.ipynb_checkpoints/
+*.swp
+*.vscode/
+*.idea/
+*.pyc
+slurm*out
+
+# OS files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
