@@ -1,6 +1,6 @@
 # Singularity
 
-Revealing Single Frame Bias for Video-and-Language Learning
+Revealing Single Frame Bias for Video-and-Language Learning (to appear in arXiv later today, June 7th)
 
 [Jie Lei](http://www.cs.unc.edu/~jielei/), [Tamara L. Berg](http://tamaraberg.com/), [Mohit Bansal](http://www.cs.unc.edu/~mbansal/)
 
