@@ -1,6 +1,6 @@
 # Singularity
 
-Investigating Single Frame Models for Video-and-Language Learning
+Revealing Single Frame Bias for Video-and-Language Learning
 
 [Jie Lei](http://www.cs.unc.edu/~jielei/), [Tamara L. Berg](http://tamaraberg.com/), [Mohit Bansal](http://www.cs.unc.edu/~mbansal/)
 
@@ -12,6 +12,29 @@ Official PyTorch code for Singularity, an efficient single-frame approach for en
 * image question answering on VQA
 
 Besides, based on the action recognition dataset [SSV2](https://arxiv.org/abs/1706.04261), we also provide two video-and-language tasks that requires fine-grained temporal modeling. These two retrieval tasks are also supported by this repo.
+
+
+## Setup
+
+
+The specific packages used in our experiment are detailed in [environment.yml](environment.yml), you can easily create a conda env containing these packages.
+```bash
+# create 
+conda env create -f environment.yml
+# activate
+conda activate sl
+```
+
+In your .bashrc file, set the environment variables:
+```bash
+export SL_EXP_DIR="/path/to/ckpts_and_logs"
+export SL_DATA_DIR="/path/to/data"
+```
+These variables are accessed by the yaml files in the [configs/](configs) directory and the shell scripts in [scripts/](scripts).
+
+[Optional] Our codebase support using [wandb](https://wandb.ai/) to monitor training. If you want to use wandb, you will need to set up it following [this very short instruction](https://docs.wandb.ai/quickstart#1.-set-up-wandb), and also set `wandb.enable` in the [configs](configs) to be `True`.
+
+
 
 ## Download
 #### Annotations
@@ -37,28 +60,6 @@ For video-text tasks, each `.tar.gz` file includes both Singularity (1-frame) an
 
 #### Raw Videos and Images
 We compile the resources and links for downloading and preprocessing (e.g., compressing for faster loading, etc.) the raw videos and images for all the datasets used in this work, in [DATA.md](DATA.md)
-
-
-## Setup
-
-
-The specific packages used in our experiment are detailed in [environment.yml](environment.yml), you can easily create a conda env containing these packages.
-```bash
-# create 
-conda env create -f environment.yml
-# activate
-conda activate sl
-```
-
-In your .bashrc file, set the environment variables:
-```bash
-export SL_EXP_DIR="/path/to/ckpts_and_logs"
-export SL_DATA_DIR="/path/to/data"
-```
-These variables are accessed by the yaml files in the [configs/](configs) directory and the shell scripts in [scripts/](scripts).
-
-[Optional] Our codebase support using [wandb](https://wandb.ai/) to monitor training. If you want to use wandb, you will need to set up it following [this very short instruction](https://docs.wandb.ai/quickstart#1.-set-up-wandb), and also set `wandb.enable` in the [configs](configs) to be `True`.
-
 
 
 ## Pre-Training
