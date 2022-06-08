@@ -1,6 +1,6 @@
 # Singularity
 
-[Revealing Single Frame Bias for Video-and-Language Learning](https://arxiv.org/abs/2206.03428)
+[Revealing Single Frame Bias for Video-and-Language Learning](https://arxiv.org/abs/2206.03428), arXiv 2022
 
 [Jie Lei](http://www.cs.unc.edu/~jielei/), [Tamara L. Berg](http://tamaraberg.com/), [Mohit Bansal](http://www.cs.unc.edu/~mbansal/)
 
@@ -13,6 +13,7 @@ Official PyTorch code for Singularity, an efficient single-frame approach for en
 
 Besides, based on the action recognition dataset [SSV2](https://arxiv.org/abs/1706.04261), we also provide two video-and-language tasks that requires fine-grained temporal modeling. These two retrieval tasks are also supported by this repo.
 
+![model figure](./imgs/model.png)
 
 ## Setup
 
@@ -41,7 +42,7 @@ These variables are accessed by the yaml files in the [configs/](configs) direct
 * [Pre-training data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_pretrain.tar.gz), 2.6 GB.
 * [Downstream data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_downstream.tar.gz), 0.6 GB, including the new ssv2 tasks.
 
-It is recommended to save the annotation files under `${SL_DATA_DIR}`. For example, the config file [configs/pretrain.yaml](configs/pretrain.yaml) assume `${SL_DATA_DIR}/anno_pretrain` is the directory containing all pre-training annotation files.
+It is recommended to save the annotation files under `${SL_DATA_DIR}`. For example, the config file [configs/pretrain.yaml](configs/pretrain.yaml) assume `${SL_DATA_DIR}/anno_pretrain` is the directory containing all pre-training annotation files. Detailed statistics of these datasets are provided in our paper.
 
 #### Checkpoints (size 1.6 GB - 4.0 GB)
 * [Pre-trained checkpoints](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/pt.tar.gz)
@@ -71,6 +72,7 @@ bash scripts/pretrain.sh EXP_NAME CORPUS NGPU local
 ```bash
 bash scripts/pretrain.sh first_run webvid_cc3m 3 local
 ```
+With 3 A100 GPUs, this pre-training takes about 1 day to finish.
 You can also change the other configs in [configs/pretrain.yaml](configs/pretrain.yaml). For example, you can append `wandb.enable=True` to enable logging with wandb:
 ```bash
 bash scripts/pretrain.sh first_run webvid_cc3m 3 local wandb.enable=True
@@ -105,6 +107,7 @@ bash scripts/train_ret.sh ft_msrvtt_4frm_2tlayer msrvtt 1 local \
 ```
 Similar to pre-training, you can run this script on slurm, simply replacing `bash` with `sbatch`, `local` with `slurm`.
 
+![retrieval results](./imgs/stoa_ret.png)
 
 ### Question Answering
 Launch fine-tuning for video (or image) question answering with the following command:
@@ -114,6 +117,7 @@ bash scripts/train_vqa.sh EXP_NAME DATASET NGPU local \
 ```
 `DATASET` can be one of `[msrvtt, anet, vqa]`. This script also supports slurm.
 
+![qa results](./imgs/stoa_qa.png)
 
 ## Evaluation
 For retrieval, run
