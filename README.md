@@ -13,15 +13,18 @@ Official PyTorch code for Singularity, an efficient single-frame approach for en
 
 Besides, based on the action recognition dataset [SSV2](https://arxiv.org/abs/1706.04261), we also provide two video-and-language tasks that requires fine-grained temporal modeling. These two retrieval tasks are also supported by this repo.
 
-![model figure](./imgs/model.png)
+<p align="center">
+<img src="./imgs/model.png" style="width: 90%">
+</p>
+
 
 ## Setup
 
 
-The specific packages used in our experiment are detailed in [environment.yml](environment.yml), you can easily create a conda env containing these packages.
+The specific packages used in our experiment are detailed in [environment.yaml](environment.yaml), you can easily create a conda env containing these packages.
 ```bash
 # create 
-conda env create -f environment.yml
+conda env create -f environment.yaml
 # activate
 conda activate sl
 ```
@@ -107,7 +110,11 @@ bash scripts/train_ret.sh ft_msrvtt_4frm_2tlayer msrvtt 1 local \
 ```
 Similar to pre-training, you can run this script on slurm, simply replacing `bash` with `sbatch`, `local` with `slurm`.
 
-![retrieval results](./imgs/stoa_ret.png)
+Results on existing retrieval datasets:
+<p align="center">
+<img src="./imgs/stoa_ret.png" style="width: 86%">
+</p>
+
 
 ### Question Answering
 Launch fine-tuning for video (or image) question answering with the following command:
@@ -117,7 +124,11 @@ bash scripts/train_vqa.sh EXP_NAME DATASET NGPU local \
 ```
 `DATASET` can be one of `[msrvtt, anet, vqa]`. This script also supports slurm.
 
-![qa results](./imgs/stoa_qa.png)
+Results on existing QA datasets:
+<p align="center">
+<img src="./imgs/stoa_qa.png" style="width: 86%">
+</p>
+
 
 ## Evaluation
 For retrieval, run
