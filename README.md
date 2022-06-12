@@ -87,6 +87,30 @@ sbatch scripts/pretrain.sh first_run webvid_cc3m 3 slurm wandb.enable=True
 However, note that you may need to change `#SBATCH` configs in [scripts/pretrain.sh](scripts/pretrain.sh) for your specific slurm cluster, e.g., `--partition`. Also, the `NGPU` argument will be ignored, you need to specify #gpus using `#SBATCH` in the script.
 
 
+Some useful scripts:
+
+* Pre-training on 5M corpus:
+    ```bash
+    bash scripts/pretrain.sh 5m_1frm_pt webvid_cc3m 3 local
+    ```
+
+* Pre-training on 17M corpus:
+    ```bash
+    bash scripts/pretrain.sh 17m_1frm_pt webvid_14m 3 local
+    ```
+  
+* 2nd stage video pre-training on WebVid:
+    ```bash
+    bash scripts/pretrain.sh 2nd_4frm_pt webvid 3 local \
+      pretrained_path=SINGLE_FRM_PT_CKPT_PATH \
+      optimizer.lr=5e-5 scheduler.epochs=5 \
+      video_input.num_frames=4 batch_size.video=32 \
+      add_temporal_embed=True 
+      temporal_vision_encoder.enable=True \
+      temporal_vision_encoder.num_layers=2
+    ```
+
+
 ## Fine-Tuning
 ### Retrieval
 Launch fine-tuning for text-to-video (or text-to-image) retrieval with the following command:
@@ -140,6 +164,16 @@ bash scripts/eval_ret.sh DATASET CKPT_PATH SAVE_DIRNAME local NGPU
 bash scripts/eval_ret.sh didemo /path/to/pt_ckpt.pth eval_12frm local 1 \
  test_types=[val,test] video_input.num_frames_test=12
 ```
+
+You may need to append the flag `eval_offload=True` to offload intermediate embeddings from GPU to CPU to avoid OOM for large datasets.
+For inference using different frame ensemble strategies, e.g., `max`, append `eval_frame_ensemble=max`, available options are `[concat, max, mean, lse]`.
+
+
+For MSRVTT-MC, run
+```bash
+bash scripts/eval_ret_mc.sh msrvtt_mc CKPT_PATH SAVE_DIRNAME local NGPU 
+```
+where `CKPT_PATH` is a pre-trained checkpoint from the MSRVTT retrieval task.
 
 For question answering, run
 ```bash
