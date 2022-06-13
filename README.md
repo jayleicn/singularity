@@ -11,7 +11,7 @@ Official PyTorch code for Singularity, an efficient single-frame approach for en
 * text-to-image retrieval on COCO, Flickr
 * image question answering on VQA
 
-Besides, based on the action recognition dataset [SSV2](https://arxiv.org/abs/1706.04261), we also provide two video-and-language tasks that requires fine-grained temporal modeling. These two retrieval tasks are also supported by this repo.
+Besides, based on the action recognition dataset [SSV2](https://arxiv.org/abs/1706.04261), we also provide **two new video-and-language tasks that requires fine-grained temporal modeling**. These two retrieval tasks are also supported by this repo.
 
 <p align="center">
 <img src="./imgs/model.png" style="width: 90%">
@@ -43,7 +43,7 @@ These variables are accessed by the yaml files in the [configs/](configs) direct
 ## Download
 #### Annotations
 * [Pre-training data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_pretrain.tar.gz), 2.6 GB.
-* [Downstream data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_downstream.tar.gz), 0.6 GB, including the new ssv2 tasks.
+* [Downstream data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_downstream.tar.gz), 0.6 GB, including **the new ssv2 tasks**.
 
 It is recommended to save the annotation files under `${SL_DATA_DIR}`. For example, the config file [configs/pretrain.yaml](configs/pretrain.yaml) assume `${SL_DATA_DIR}/anno_pretrain` is the directory containing all pre-training annotation files. Detailed statistics of these datasets are provided in our paper.
 
