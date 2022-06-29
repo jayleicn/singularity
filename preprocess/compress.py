@@ -86,7 +86,7 @@ def prepare_input_output_pairs(input_root, output_root, input_file_list_path=Non
         if not exists(output_file_path):
             input_file_path_list.append(input_file_path)
             output_file_path_list.append(output_file_path)
-        return input_file_path_list, output_file_path_list
+    return input_file_path_list, output_file_path_list
 
 
 def run_compress():
