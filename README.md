@@ -111,6 +111,27 @@ Some useful scripts:
     ```
 
 
+## Pre-Training on custom data
+It is quite simple and straightforward to pre-train or fine-tune on your own data. Below we give step-by-step instructions for pre-training on your own image-text or video-text dataset. 
+
+#### 1. Format annotation file 
+The annotation file is in `json` format, which can be loaded as a list of dictionaries. Each dictionary is `{'image': path_to_image, 'caption': image_caption}` for image-text dataset, and is `{'image': path_to_video, 'caption': video_caption}` for video-text dataset. Note that we use the same key `image` for both image-text and video-text datasets for simplicity.
+
+#### 2. Modify config file
+In [configs/pretrain.yaml](configs/pretrain.yaml), add name and paths to your annotation file under the `available_corpus` entry. For example `my_new_dataset: [path_to_json, path_to_image_directory]`. For video-text datasets, add an indicator `video` in this configuration list: `my_new_dataset: [path_to_json, path_to_video_directory, video]`
+
+#### 3. Modify training script
+In [scripts/pretrain.sh](scripts/pretrain.sh), add `&& [[ ${corpus} != "my_new_dataset" ]]` in the if clause. 
+
+
+#### 4. Launch training
+The script below trains the single frame Singularity model on the custom dataset named `my_new_dataset` on 3 local GPUs. The experiment is named `my_new_dataset_1frm_pt`.
+```bash
+bash scripts/pretrain.sh my_new_dataset_1frm_pt my_new_dataset 3 local
+```
+
+
+
 ## Fine-Tuning
 ### Retrieval
 Launch fine-tuning for text-to-video (or text-to-image) retrieval with the following command:
