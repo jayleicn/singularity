@@ -185,7 +185,7 @@ bash scripts/eval_ret.sh DATASET CKPT_PATH SAVE_DIRNAME local NGPU
 bash scripts/eval_ret.sh didemo /path/to/pt_ckpt.pth eval_12frm local 1 \
  test_types=[val,test] video_input.num_frames_test=12
 ```
-Note that, if you are evaluating `Singularity-temporal` models, additional flags that consturcts the temporal model should be appened. For examople, when evaluating a 2-layer temporal model, 
+Note that, if you are evaluating `Singularity-temporal` models (in the provided checkpoints, temporal model checkpoints contain the substring `singularity_temporal`), additional flags that consturcts the temporal model should be appened. For examople, when evaluating a 2-layer temporal model, 
 ```bash
 bash scripts/eval_ret.sh didemo /path/to/pt_ckpt.pth eval_12frm local 1 \
  test_types=[val,test] video_input.num_frames_test=12 \
