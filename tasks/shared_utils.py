@@ -37,9 +37,9 @@ def setup_model(config, model_cls, has_decoder=False, pretrain=False, find_unuse
         checkpoint = torch.load(config.pretrained_path, map_location="cpu")
         state_dict = checkpoint["model"]
 
-        # if config.evaluate:
-        #     pass
-        if config.resume:
+        if config.evaluate:
+            pass
+        elif config.resume:
             optimizer.load_state_dict(checkpoint["optimizer"])
             scheduler.load_state_dict(checkpoint["scheduler"])
             scaler.load_state_dict(checkpoint["scaler"])
