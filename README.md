@@ -42,23 +42,23 @@ These variables are accessed by the yaml files in the [configs/](configs) direct
 
 ## Download
 #### Annotations
-* [Pre-training data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_pretrain.tar.gz), 2.6 GB.
-* [Downstream data](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/anno_downstream.tar.gz), 0.6 GB, including **the new ssv2 tasks**.
+* [Pre-training data](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/anno_pretrain.tar.gz), 2.6 GB.
+* [Downstream data](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/anno_downstream.tar.gz), 0.6 GB, including **the new ssv2 tasks**.
 
 It is recommended to save the annotation files under `${SL_DATA_DIR}`. For example, the config file [configs/pretrain.yaml](configs/pretrain.yaml) assume `${SL_DATA_DIR}/anno_pretrain` is the directory containing all pre-training annotation files. Detailed statistics of these datasets are provided in our paper.
 
 #### Checkpoints (size 1.6 GB - 4.0 GB)
-* [Pre-trained checkpoints](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/pt.tar.gz)
-* [Fine-tuned checkpoints, MSRVTT retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/msrvtt_ret.tar.gz)
-* [Fine-tuned checkpoints, DiDeMo retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/didemo_ret.tar.gz)
-* [Fine-tuned checkpoints, ActivityNet Captions retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/anet_ret.tar.gz)
-* [Fine-tuned checkpoints, SSV2 label retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/ssv2l_ret.tar.gz)
-* [Fine-tuned checkpoints, SSV2 template retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/ssv2t_ret.tar.gz)
-* [Fine-tuned checkpoints, MSRVTT QA](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/msrvtt_qa.tar.gz)
-* [Fine-tuned checkpoints, ActivityNet QA](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/anet_qa.tar.gz)
-* [Fine-tuned checkpoints, COCO retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/coco_ret.tar.gz)
-* [Fine-tuned checkpoints, Flickr retrieval](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/flickr_ret.tar.gz)
-* [Fine-tuned checkpoints, VQA](https://vision.cs.unc.edu/jielei/project/sparse_bwd_data/release/ckpts/vqa.tar.gz)
+* [Pre-trained checkpoints](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/pt.tar.gz)
+* [Fine-tuned checkpoints, MSRVTT retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/msrvtt_ret.tar.gz)
+* [Fine-tuned checkpoints, DiDeMo retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/didemo_ret.tar.gz)
+* [Fine-tuned checkpoints, ActivityNet Captions retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/anet_ret.tar.gz)
+* [Fine-tuned checkpoints, SSV2 label retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/ssv2l_ret.tar.gz)
+* [Fine-tuned checkpoints, SSV2 template retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/ssv2t_ret.tar.gz)
+* [Fine-tuned checkpoints, MSRVTT QA](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/msrvtt_qa.tar.gz)
+* [Fine-tuned checkpoints, ActivityNet QA](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/anet_qa.tar.gz)
+* [Fine-tuned checkpoints, COCO retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/coco_ret.tar.gz)
+* [Fine-tuned checkpoints, Flickr retrieval](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/flickr_ret.tar.gz)
+* [Fine-tuned checkpoints, VQA](https://nlp.cs.unc.edu/data/jielei/sparse_bwd/release/ckpts/vqa.tar.gz)
 
 For video-text tasks, each `.tar.gz` file includes both Singularity (1-frame) and Singularity-temporal (4-frame) models, pre-trained on 5M and 17M corpus, in total 4 ckeckpoints per file. For image-text tasks, each `.tar.gz` file contains two Singularity ckeckpoints per file.
 
